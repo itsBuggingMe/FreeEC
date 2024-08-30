@@ -12,7 +12,7 @@ namespace Tester
         private SpriteBatch _spriteBatch;
         private static Texture2D _pix;
         private World _world = new World(1);
-        const int Boxes = 10000;
+        const int Boxes = 1000000;
 
         public GameRoot()
         {
@@ -33,7 +33,6 @@ namespace Tester
 
             for (int i = 0; i < Boxes; i++)
             {
-                //TODO: use the better normal method syntax
                 _world
                     .With(new PositionComponent(new Vector2(Random.Shared.NextSingle() * clientSize.X, Random.Shared.NextSingle() * clientSize.Y), Vector2.UnitX, 0.95f))
                     .With(new JumpTowardsCursorBehavior())

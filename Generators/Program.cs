@@ -2,9 +2,11 @@ using System;
 using System.Linq;
 using System.Text;
 
+string typeDef = "Entity{name}<{u_def}{d_def}>";
+
 string template =
 """
-internal class Entity{name}<{u_def}{d_def}>({u_name}{d_name}) : IEntity{u_con}{d_con}
+internal sealed class {type_def}({u_name}{d_name}) : IEntity<{type_def}>{u_con}{d_con}
 {
 {u_field}{d_field}
 
@@ -45,6 +47,11 @@ internal class Entity{name}<{u_def}{d_def}>({u_name}{d_name}) : IEntity{u_con}{d
 
 """;
 
+string method = """
+public IEntity Create<{u_def}{d_def}>({u_name}{d_name}){u_con}{d_con}
+=> Register(new {type_def}({u_param}{d_param}));
+""";
+
 const string Seed = """
 using Microsoft.Xna.Framework;
 using static FreeEC.Helpers;
@@ -56,6 +63,7 @@ namespace FreeEC;
 """;
 
 StringBuilder total = new(Seed);
+StringBuilder methodString = new();
 StringBuilder arrString = new();
 
 for (int i = 0; i < 6; i++)
@@ -70,19 +78,40 @@ for (int i = 0; i < 6; i++)
 
 Console.WriteLine(total);
 Console.WriteLine(arrString);
+Console.WriteLine(methodString);
 
 string Replace(int ucount, int dcount)
 {
     //def, name, con, tick, get, has
 
-    return template
+    string typeName = typeDef
         .Replace("{name}", $"{ucount}{dcount}")
+        .Replace("{u_def}", BuildPattern(ucount, i => $"Tu{i}, ", dcount == 0 ? 2 : 0))
+        .Replace("{d_def}", BuildPattern(dcount, i => $"Td{i}, ", 2));
+
+    Console.Clear();
+
+    string u_def = BuildPattern(ucount, i => $"Tu{i}, ", dcount == 0 ? 2 : 0);
+
+    string m = method
+        .Replace("{type_def}", typeName)
         .Replace("{u_def}", BuildPattern(ucount, i => $"Tu{i}, ", dcount == 0 ? 2 : 0))
         .Replace("{d_def}", BuildPattern(dcount, i => $"Td{i}, ", 2))
         .Replace("{u_name}", BuildPattern(ucount, i => $"Tu{i} u{i}, ", dcount == 0 ? 2 : 0))
         .Replace("{d_name}", BuildPattern(dcount, i => $"Td{i} d{i}, ", 2))
-        .Replace("{u_field}", BuildPattern(ucount, i => $"    Tu{i} _u{i} = u{i};\n"))
-        .Replace("{d_field}", BuildPattern(dcount, i => $"    Td{i} _d{i} = d{i};\n", 1))
+        .Replace("{u_con}", BuildPattern(ucount, i => $"\n    where Tu{i} : IUpdateComponent"))
+        .Replace("{d_con}", BuildPattern(dcount, i => $"\n    where Td{i} : IDrawComponent"))
+        .Replace("{u_param}", BuildPattern(ucount, i => $"u{i}, ", dcount == 0 ? 2 : 0))
+        .Replace("{d_param}", BuildPattern(dcount, i => $"d{i}, ", 2));
+
+    methodString.Append('\n').Append('\n').Append(m);
+
+    return template
+        .Replace("{type_def}", typeName)
+        .Replace("{u_name}", BuildPattern(ucount, i => $"Tu{i} u{i}, ", dcount == 0 ? 2 : 0))
+        .Replace("{d_name}", BuildPattern(dcount, i => $"Td{i} d{i}, ", 2))
+        .Replace("{u_field}", BuildPattern(ucount, i => $"    in Tu{i} _u{i} = u{i};\n"))
+        .Replace("{d_field}", BuildPattern(dcount, i => $"    in Td{i} _d{i} = d{i};\n", 1))
         .Replace("{u_con}", BuildPattern(ucount, i => $"\n    where Tu{i} : IUpdateComponent"))
         .Replace("{d_con}", BuildPattern(dcount, i => $"\n    where Td{i} : IDrawComponent"))
         .Replace("{u_tick}", BuildPattern(ucount, i => $"        _u{i}.Update(this, gameTime);\n", 1))
@@ -107,5 +136,7 @@ string BuildPattern(int count, Func<int, string> modifier, int removeamt = 0)
         s.Remove(s.Length - removeamt, removeamt);
     }
 
-    return s.ToString();
+    string s1 = s.ToString();
+    Console.WriteLine(s1);
+    return s1;
 }

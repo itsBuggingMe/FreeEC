@@ -11,6 +11,7 @@ namespace FreeEC
     public class World
     {
         private FastStack<IEntity> _entities;
+        private Dictionary<object, FastStack<IEntity>> _tagLookup = [];
 
         private List<IUpdateComponent> _updates = [];
         private List<IDrawComponent> _draw = [];
@@ -62,8 +63,28 @@ namespace FreeEC
 
             _updates.Clear();
             _draw.Clear();
-            _entities.Push(result);
+            _entities.Push(Register(result));
             return result;
+        }
+
+        private IEntity Register(IEntity e)
+        {
+            if (!e.HasUpdate<TagComponent>())
+                return e;
+            ref TagComponent tag = ref e.GetUpdate<TagComponent>();
+            if (tag.Value is null)
+                return e;
+            if (_tagLookup.TryGetValue(tag.Value, out var collection))
+            {
+                collection.Push(e);
+            }
+            else
+            {
+                FastStack<IEntity> space = new FastStack<IEntity>(2);
+                space.Push(e);
+                _tagLookup[tag.Value] = space;
+            }
+            return e;
         }
 
         public World(int initalCapacity = 4)

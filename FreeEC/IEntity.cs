@@ -2,6 +2,9 @@ using Microsoft.Xna.Framework;
 
 namespace FreeEC
 {
+    public interface IEntity<TSelf> : IEntity
+        where TSelf : IEntity<TSelf>;
+
     public interface IEntity
     {
         void Update(GameTime gameTime);

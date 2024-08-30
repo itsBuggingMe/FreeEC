@@ -4,13 +4,11 @@ namespace FreeEC
 {
     public interface IUpdateComponent : IComponent
     {
-        void Update(IEntity parent, GameTime gameTime);
+        void Update<T>(T parent, GameTime gameTime) where T : IEntity<T>;
     }
-
     public interface IDrawComponent : IComponent
     {
-        void Draw(IEntity parent);
+        void Draw<T>(T parent) where T : IEntity<T>;
     }
-
     public interface IComponent;
 }
