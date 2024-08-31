@@ -17,24 +17,29 @@ internal sealed class Entity00() : IEntity<Entity00>
 
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
 
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
 
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
 
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
 
@@ -42,7 +47,7 @@ internal sealed class Entity00() : IEntity<Entity00>
     }
 }
 
-internal sealed class Entity01<Td0>(Td0 d0) : IEntity<Entity01<Td0>>
+internal sealed class Entity01<Td0>(in Td0 d0) : IEntity<Entity01<Td0>>
     where Td0 : IDrawComponent
 {
     Td0 _d0 = d0;
@@ -53,21 +58,25 @@ internal sealed class Entity01<Td0>(Td0 d0) : IEntity<Entity01<Td0>>
     }
     public void Draw()
     {
-        _d0.Draw(this);
+        _d0.Draw(new EntC<Entity01<Td0>>(this));
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
 
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
 
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -75,6 +84,7 @@ internal sealed class Entity01<Td0>(Td0 d0) : IEntity<Entity01<Td0>>
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -83,7 +93,7 @@ internal sealed class Entity01<Td0>(Td0 d0) : IEntity<Entity01<Td0>>
     }
 }
 
-internal sealed class Entity02<Td0, Td1>(Td0 d0, Td1 d1) : IEntity<Entity02<Td0, Td1>>
+internal sealed class Entity02<Td0, Td1>(in Td0 d0, in Td1 d1) : IEntity<Entity02<Td0, Td1>>
     where Td0 : IDrawComponent
     where Td1 : IDrawComponent
 {
@@ -96,22 +106,26 @@ internal sealed class Entity02<Td0, Td1>(Td0 d0, Td1 d1) : IEntity<Entity02<Td0,
     }
     public void Draw()
     {
-        _d0.Draw(this);
-        _d1.Draw(this);
+        _d0.Draw(new EntC<Entity02<Td0, Td1>>(this));
+        _d1.Draw(new EntC<Entity02<Td0, Td1>>(this));
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
 
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
 
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -121,6 +135,7 @@ internal sealed class Entity02<Td0, Td1>(Td0 d0, Td1 d1) : IEntity<Entity02<Td0,
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -131,7 +146,7 @@ internal sealed class Entity02<Td0, Td1>(Td0 d0, Td1 d1) : IEntity<Entity02<Td0,
     }
 }
 
-internal sealed class Entity03<Td0, Td1, Td2>(Td0 d0, Td1 d1, Td2 d2) : IEntity<Entity03<Td0, Td1, Td2>>
+internal sealed class Entity03<Td0, Td1, Td2>(in Td0 d0, in Td1 d1, in Td2 d2) : IEntity<Entity03<Td0, Td1, Td2>>
     where Td0 : IDrawComponent
     where Td1 : IDrawComponent
     where Td2 : IDrawComponent
@@ -146,23 +161,27 @@ internal sealed class Entity03<Td0, Td1, Td2>(Td0 d0, Td1 d1, Td2 d2) : IEntity<
     }
     public void Draw()
     {
-        _d0.Draw(this);
-        _d1.Draw(this);
-        _d2.Draw(this);
+        _d0.Draw(new EntC<Entity03<Td0, Td1, Td2>>(this));
+        _d1.Draw(new EntC<Entity03<Td0, Td1, Td2>>(this));
+        _d2.Draw(new EntC<Entity03<Td0, Td1, Td2>>(this));
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
 
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
 
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -174,6 +193,7 @@ internal sealed class Entity03<Td0, Td1, Td2>(Td0 d0, Td1 d1, Td2 d2) : IEntity<
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -186,7 +206,7 @@ internal sealed class Entity03<Td0, Td1, Td2>(Td0 d0, Td1 d1, Td2 d2) : IEntity<
     }
 }
 
-internal sealed class Entity10<Tu0>(Tu0 u0) : IEntity<Entity10<Tu0>>
+internal sealed class Entity10<Tu0>(in Tu0 u0) : IEntity<Entity10<Tu0>>
     where Tu0 : IUpdateComponent
 {
     Tu0 _u0 = u0;
@@ -194,13 +214,14 @@ internal sealed class Entity10<Tu0>(Tu0 u0) : IEntity<Entity10<Tu0>>
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
+        _u0.Update(new EntC<Entity10<Tu0>>(this), gameTime);
     }
     public void Draw()
     {
 
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -208,19 +229,23 @@ internal sealed class Entity10<Tu0>(Tu0 u0) : IEntity<Entity10<Tu0>>
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
 
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
 
@@ -228,7 +253,7 @@ internal sealed class Entity10<Tu0>(Tu0 u0) : IEntity<Entity10<Tu0>>
     }
 }
 
-internal sealed class Entity11<Tu0, Td0>(Tu0 u0, Td0 d0) : IEntity<Entity11<Tu0, Td0>>
+internal sealed class Entity11<Tu0, Td0>(in Tu0 u0, in Td0 d0) : IEntity<Entity11<Tu0, Td0>>
     where Tu0 : IUpdateComponent
     where Td0 : IDrawComponent
 {
@@ -237,13 +262,14 @@ internal sealed class Entity11<Tu0, Td0>(Tu0 u0, Td0 d0) : IEntity<Entity11<Tu0,
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
+        _u0.Update(new EntC<Entity11<Tu0, Td0>>(this), gameTime);
     }
     public void Draw()
     {
-        _d0.Draw(this);
+        _d0.Draw(new EntC<Entity11<Tu0, Td0>>(this));
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -251,13 +277,16 @@ internal sealed class Entity11<Tu0, Td0>(Tu0 u0, Td0 d0) : IEntity<Entity11<Tu0,
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -265,6 +294,7 @@ internal sealed class Entity11<Tu0, Td0>(Tu0 u0, Td0 d0) : IEntity<Entity11<Tu0,
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -273,7 +303,7 @@ internal sealed class Entity11<Tu0, Td0>(Tu0 u0, Td0 d0) : IEntity<Entity11<Tu0,
     }
 }
 
-internal sealed class Entity12<Tu0, Td0, Td1>(Tu0 u0, Td0 d0, Td1 d1) : IEntity<Entity12<Tu0, Td0, Td1>>
+internal sealed class Entity12<Tu0, Td0, Td1>(in Tu0 u0, in Td0 d0, in Td1 d1) : IEntity<Entity12<Tu0, Td0, Td1>>
     where Tu0 : IUpdateComponent
     where Td0 : IDrawComponent
     where Td1 : IDrawComponent
@@ -284,14 +314,15 @@ internal sealed class Entity12<Tu0, Td0, Td1>(Tu0 u0, Td0 d0, Td1 d1) : IEntity<
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
+        _u0.Update(new EntC<Entity12<Tu0, Td0, Td1>>(this), gameTime);
     }
     public void Draw()
     {
-        _d0.Draw(this);
-        _d1.Draw(this);
+        _d0.Draw(new EntC<Entity12<Tu0, Td0, Td1>>(this));
+        _d1.Draw(new EntC<Entity12<Tu0, Td0, Td1>>(this));
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -299,13 +330,16 @@ internal sealed class Entity12<Tu0, Td0, Td1>(Tu0 u0, Td0 d0, Td1 d1) : IEntity<
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -315,6 +349,7 @@ internal sealed class Entity12<Tu0, Td0, Td1>(Tu0 u0, Td0 d0, Td1 d1) : IEntity<
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -325,7 +360,7 @@ internal sealed class Entity12<Tu0, Td0, Td1>(Tu0 u0, Td0 d0, Td1 d1) : IEntity<
     }
 }
 
-internal sealed class Entity13<Tu0, Td0, Td1, Td2>(Tu0 u0, Td0 d0, Td1 d1, Td2 d2) : IEntity<Entity13<Tu0, Td0, Td1, Td2>>
+internal sealed class Entity13<Tu0, Td0, Td1, Td2>(in Tu0 u0, in Td0 d0, in Td1 d1, in Td2 d2) : IEntity<Entity13<Tu0, Td0, Td1, Td2>>
     where Tu0 : IUpdateComponent
     where Td0 : IDrawComponent
     where Td1 : IDrawComponent
@@ -338,15 +373,16 @@ internal sealed class Entity13<Tu0, Td0, Td1, Td2>(Tu0 u0, Td0 d0, Td1 d1, Td2 d
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
+        _u0.Update(new EntC<Entity13<Tu0, Td0, Td1, Td2>>(this), gameTime);
     }
     public void Draw()
     {
-        _d0.Draw(this);
-        _d1.Draw(this);
-        _d2.Draw(this);
+        _d0.Draw(new EntC<Entity13<Tu0, Td0, Td1, Td2>>(this));
+        _d1.Draw(new EntC<Entity13<Tu0, Td0, Td1, Td2>>(this));
+        _d2.Draw(new EntC<Entity13<Tu0, Td0, Td1, Td2>>(this));
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -354,13 +390,16 @@ internal sealed class Entity13<Tu0, Td0, Td1, Td2>(Tu0 u0, Td0 d0, Td1 d1, Td2 d
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -372,6 +411,7 @@ internal sealed class Entity13<Tu0, Td0, Td1, Td2>(Tu0 u0, Td0 d0, Td1 d1, Td2 d
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -384,7 +424,7 @@ internal sealed class Entity13<Tu0, Td0, Td1, Td2>(Tu0 u0, Td0 d0, Td1 d1, Td2 d
     }
 }
 
-internal sealed class Entity20<Tu0, Tu1>(Tu0 u0, Tu1 u1) : IEntity<Entity20<Tu0, Tu1>>
+internal sealed class Entity20<Tu0, Tu1>(in Tu0 u0, in Tu1 u1) : IEntity<Entity20<Tu0, Tu1>>
     where Tu0 : IUpdateComponent
     where Tu1 : IUpdateComponent
 {
@@ -394,14 +434,15 @@ internal sealed class Entity20<Tu0, Tu1>(Tu0 u0, Tu1 u1) : IEntity<Entity20<Tu0,
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
-        _u1.Update(this, gameTime);
+        _u0.Update(new EntC<Entity20<Tu0, Tu1>>(this), gameTime);
+        _u1.Update(new EntC<Entity20<Tu0, Tu1>>(this), gameTime);
     }
     public void Draw()
     {
 
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -411,7 +452,9 @@ internal sealed class Entity20<Tu0, Tu1>(Tu0 u0, Tu1 u1) : IEntity<Entity20<Tu0,
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
@@ -420,12 +463,14 @@ internal sealed class Entity20<Tu0, Tu1>(Tu0 u0, Tu1 u1) : IEntity<Entity20<Tu0,
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
 
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
 
@@ -433,7 +478,7 @@ internal sealed class Entity20<Tu0, Tu1>(Tu0 u0, Tu1 u1) : IEntity<Entity20<Tu0,
     }
 }
 
-internal sealed class Entity21<Tu0, Tu1, Td0>(Tu0 u0, Tu1 u1, Td0 d0) : IEntity<Entity21<Tu0, Tu1, Td0>>
+internal sealed class Entity21<Tu0, Tu1, Td0>(in Tu0 u0, in Tu1 u1, in Td0 d0) : IEntity<Entity21<Tu0, Tu1, Td0>>
     where Tu0 : IUpdateComponent
     where Tu1 : IUpdateComponent
     where Td0 : IDrawComponent
@@ -444,14 +489,15 @@ internal sealed class Entity21<Tu0, Tu1, Td0>(Tu0 u0, Tu1 u1, Td0 d0) : IEntity<
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
-        _u1.Update(this, gameTime);
+        _u0.Update(new EntC<Entity21<Tu0, Tu1, Td0>>(this), gameTime);
+        _u1.Update(new EntC<Entity21<Tu0, Tu1, Td0>>(this), gameTime);
     }
     public void Draw()
     {
-        _d0.Draw(this);
+        _d0.Draw(new EntC<Entity21<Tu0, Tu1, Td0>>(this));
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -461,7 +507,9 @@ internal sealed class Entity21<Tu0, Tu1, Td0>(Tu0 u0, Tu1 u1, Td0 d0) : IEntity<
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
@@ -470,6 +518,7 @@ internal sealed class Entity21<Tu0, Tu1, Td0>(Tu0 u0, Tu1 u1, Td0 d0) : IEntity<
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -477,6 +526,7 @@ internal sealed class Entity21<Tu0, Tu1, Td0>(Tu0 u0, Tu1 u1, Td0 d0) : IEntity<
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -485,7 +535,7 @@ internal sealed class Entity21<Tu0, Tu1, Td0>(Tu0 u0, Tu1 u1, Td0 d0) : IEntity<
     }
 }
 
-internal sealed class Entity22<Tu0, Tu1, Td0, Td1>(Tu0 u0, Tu1 u1, Td0 d0, Td1 d1) : IEntity<Entity22<Tu0, Tu1, Td0, Td1>>
+internal sealed class Entity22<Tu0, Tu1, Td0, Td1>(in Tu0 u0, in Tu1 u1, in Td0 d0, in Td1 d1) : IEntity<Entity22<Tu0, Tu1, Td0, Td1>>
     where Tu0 : IUpdateComponent
     where Tu1 : IUpdateComponent
     where Td0 : IDrawComponent
@@ -498,15 +548,16 @@ internal sealed class Entity22<Tu0, Tu1, Td0, Td1>(Tu0 u0, Tu1 u1, Td0 d0, Td1 d
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
-        _u1.Update(this, gameTime);
+        _u0.Update(new EntC<Entity22<Tu0, Tu1, Td0, Td1>>(this), gameTime);
+        _u1.Update(new EntC<Entity22<Tu0, Tu1, Td0, Td1>>(this), gameTime);
     }
     public void Draw()
     {
-        _d0.Draw(this);
-        _d1.Draw(this);
+        _d0.Draw(new EntC<Entity22<Tu0, Tu1, Td0, Td1>>(this));
+        _d1.Draw(new EntC<Entity22<Tu0, Tu1, Td0, Td1>>(this));
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -516,7 +567,9 @@ internal sealed class Entity22<Tu0, Tu1, Td0, Td1>(Tu0 u0, Tu1 u1, Td0 d0, Td1 d
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
@@ -525,6 +578,7 @@ internal sealed class Entity22<Tu0, Tu1, Td0, Td1>(Tu0 u0, Tu1 u1, Td0 d0, Td1 d
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -534,6 +588,7 @@ internal sealed class Entity22<Tu0, Tu1, Td0, Td1>(Tu0 u0, Tu1 u1, Td0 d0, Td1 d
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -544,7 +599,7 @@ internal sealed class Entity22<Tu0, Tu1, Td0, Td1>(Tu0 u0, Tu1 u1, Td0 d0, Td1 d
     }
 }
 
-internal sealed class Entity23<Tu0, Tu1, Td0, Td1, Td2>(Tu0 u0, Tu1 u1, Td0 d0, Td1 d1, Td2 d2) : IEntity<Entity23<Tu0, Tu1, Td0, Td1, Td2>>
+internal sealed class Entity23<Tu0, Tu1, Td0, Td1, Td2>(in Tu0 u0, in Tu1 u1, in Td0 d0, in Td1 d1, in Td2 d2) : IEntity<Entity23<Tu0, Tu1, Td0, Td1, Td2>>
     where Tu0 : IUpdateComponent
     where Tu1 : IUpdateComponent
     where Td0 : IDrawComponent
@@ -559,16 +614,17 @@ internal sealed class Entity23<Tu0, Tu1, Td0, Td1, Td2>(Tu0 u0, Tu1 u1, Td0 d0, 
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
-        _u1.Update(this, gameTime);
+        _u0.Update(new EntC<Entity23<Tu0, Tu1, Td0, Td1, Td2>>(this), gameTime);
+        _u1.Update(new EntC<Entity23<Tu0, Tu1, Td0, Td1, Td2>>(this), gameTime);
     }
     public void Draw()
     {
-        _d0.Draw(this);
-        _d1.Draw(this);
-        _d2.Draw(this);
+        _d0.Draw(new EntC<Entity23<Tu0, Tu1, Td0, Td1, Td2>>(this));
+        _d1.Draw(new EntC<Entity23<Tu0, Tu1, Td0, Td1, Td2>>(this));
+        _d2.Draw(new EntC<Entity23<Tu0, Tu1, Td0, Td1, Td2>>(this));
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -578,7 +634,9 @@ internal sealed class Entity23<Tu0, Tu1, Td0, Td1, Td2>(Tu0 u0, Tu1 u1, Td0 d0, 
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
@@ -587,6 +645,7 @@ internal sealed class Entity23<Tu0, Tu1, Td0, Td1, Td2>(Tu0 u0, Tu1 u1, Td0 d0, 
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -598,6 +657,7 @@ internal sealed class Entity23<Tu0, Tu1, Td0, Td1, Td2>(Tu0 u0, Tu1 u1, Td0 d0, 
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -610,7 +670,7 @@ internal sealed class Entity23<Tu0, Tu1, Td0, Td1, Td2>(Tu0 u0, Tu1 u1, Td0 d0, 
     }
 }
 
-internal sealed class Entity30<Tu0, Tu1, Tu2>(Tu0 u0, Tu1 u1, Tu2 u2) : IEntity<Entity30<Tu0, Tu1, Tu2>>
+internal sealed class Entity30<Tu0, Tu1, Tu2>(in Tu0 u0, in Tu1 u1, in Tu2 u2) : IEntity<Entity30<Tu0, Tu1, Tu2>>
     where Tu0 : IUpdateComponent
     where Tu1 : IUpdateComponent
     where Tu2 : IUpdateComponent
@@ -622,15 +682,16 @@ internal sealed class Entity30<Tu0, Tu1, Tu2>(Tu0 u0, Tu1 u1, Tu2 u2) : IEntity<
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
-        _u1.Update(this, gameTime);
-        _u2.Update(this, gameTime);
+        _u0.Update(new EntC<Entity30<Tu0, Tu1, Tu2>>(this), gameTime);
+        _u1.Update(new EntC<Entity30<Tu0, Tu1, Tu2>>(this), gameTime);
+        _u2.Update(new EntC<Entity30<Tu0, Tu1, Tu2>>(this), gameTime);
     }
     public void Draw()
     {
 
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -642,7 +703,9 @@ internal sealed class Entity30<Tu0, Tu1, Tu2>(Tu0 u0, Tu1 u1, Tu2 u2) : IEntity<
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
@@ -653,12 +716,14 @@ internal sealed class Entity30<Tu0, Tu1, Tu2>(Tu0 u0, Tu1 u1, Tu2 u2) : IEntity<
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
 
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
 
@@ -666,7 +731,7 @@ internal sealed class Entity30<Tu0, Tu1, Tu2>(Tu0 u0, Tu1 u1, Tu2 u2) : IEntity<
     }
 }
 
-internal sealed class Entity31<Tu0, Tu1, Tu2, Td0>(Tu0 u0, Tu1 u1, Tu2 u2, Td0 d0) : IEntity<Entity31<Tu0, Tu1, Tu2, Td0>>
+internal sealed class Entity31<Tu0, Tu1, Tu2, Td0>(in Tu0 u0, in Tu1 u1, in Tu2 u2, in Td0 d0) : IEntity<Entity31<Tu0, Tu1, Tu2, Td0>>
     where Tu0 : IUpdateComponent
     where Tu1 : IUpdateComponent
     where Tu2 : IUpdateComponent
@@ -679,15 +744,16 @@ internal sealed class Entity31<Tu0, Tu1, Tu2, Td0>(Tu0 u0, Tu1 u1, Tu2 u2, Td0 d
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
-        _u1.Update(this, gameTime);
-        _u2.Update(this, gameTime);
+        _u0.Update(new EntC<Entity31<Tu0, Tu1, Tu2, Td0>>(this), gameTime);
+        _u1.Update(new EntC<Entity31<Tu0, Tu1, Tu2, Td0>>(this), gameTime);
+        _u2.Update(new EntC<Entity31<Tu0, Tu1, Tu2, Td0>>(this), gameTime);
     }
     public void Draw()
     {
-        _d0.Draw(this);
+        _d0.Draw(new EntC<Entity31<Tu0, Tu1, Tu2, Td0>>(this));
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -699,7 +765,9 @@ internal sealed class Entity31<Tu0, Tu1, Tu2, Td0>(Tu0 u0, Tu1 u1, Tu2 u2, Td0 d
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
@@ -710,6 +778,7 @@ internal sealed class Entity31<Tu0, Tu1, Tu2, Td0>(Tu0 u0, Tu1 u1, Tu2 u2, Td0 d
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -717,6 +786,7 @@ internal sealed class Entity31<Tu0, Tu1, Tu2, Td0>(Tu0 u0, Tu1 u1, Tu2 u2, Td0 d
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -725,7 +795,7 @@ internal sealed class Entity31<Tu0, Tu1, Tu2, Td0>(Tu0 u0, Tu1 u1, Tu2 u2, Td0 d
     }
 }
 
-internal sealed class Entity32<Tu0, Tu1, Tu2, Td0, Td1>(Tu0 u0, Tu1 u1, Tu2 u2, Td0 d0, Td1 d1) : IEntity<Entity32<Tu0, Tu1, Tu2, Td0, Td1>>
+internal sealed class Entity32<Tu0, Tu1, Tu2, Td0, Td1>(in Tu0 u0, in Tu1 u1, in Tu2 u2, in Td0 d0, in Td1 d1) : IEntity<Entity32<Tu0, Tu1, Tu2, Td0, Td1>>
     where Tu0 : IUpdateComponent
     where Tu1 : IUpdateComponent
     where Tu2 : IUpdateComponent
@@ -740,16 +810,17 @@ internal sealed class Entity32<Tu0, Tu1, Tu2, Td0, Td1>(Tu0 u0, Tu1 u1, Tu2 u2, 
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
-        _u1.Update(this, gameTime);
-        _u2.Update(this, gameTime);
+        _u0.Update(new EntC<Entity32<Tu0, Tu1, Tu2, Td0, Td1>>(this), gameTime);
+        _u1.Update(new EntC<Entity32<Tu0, Tu1, Tu2, Td0, Td1>>(this), gameTime);
+        _u2.Update(new EntC<Entity32<Tu0, Tu1, Tu2, Td0, Td1>>(this), gameTime);
     }
     public void Draw()
     {
-        _d0.Draw(this);
-        _d1.Draw(this);
+        _d0.Draw(new EntC<Entity32<Tu0, Tu1, Tu2, Td0, Td1>>(this));
+        _d1.Draw(new EntC<Entity32<Tu0, Tu1, Tu2, Td0, Td1>>(this));
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -761,7 +832,9 @@ internal sealed class Entity32<Tu0, Tu1, Tu2, Td0, Td1>(Tu0 u0, Tu1 u1, Tu2 u2, 
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
@@ -772,6 +845,7 @@ internal sealed class Entity32<Tu0, Tu1, Tu2, Td0, Td1>(Tu0 u0, Tu1 u1, Tu2 u2, 
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -781,6 +855,7 @@ internal sealed class Entity32<Tu0, Tu1, Tu2, Td0, Td1>(Tu0 u0, Tu1 u1, Tu2 u2, 
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -791,7 +866,7 @@ internal sealed class Entity32<Tu0, Tu1, Tu2, Td0, Td1>(Tu0 u0, Tu1 u1, Tu2 u2, 
     }
 }
 
-internal sealed class Entity33<Tu0, Tu1, Tu2, Td0, Td1, Td2>(Tu0 u0, Tu1 u1, Tu2 u2, Td0 d0, Td1 d1, Td2 d2) : IEntity<Entity33<Tu0, Tu1, Tu2, Td0, Td1, Td2>>
+internal sealed class Entity33<Tu0, Tu1, Tu2, Td0, Td1, Td2>(in Tu0 u0, in Tu1 u1, in Tu2 u2, in Td0 d0, in Td1 d1, in Td2 d2) : IEntity<Entity33<Tu0, Tu1, Tu2, Td0, Td1, Td2>>
     where Tu0 : IUpdateComponent
     where Tu1 : IUpdateComponent
     where Tu2 : IUpdateComponent
@@ -808,17 +883,18 @@ internal sealed class Entity33<Tu0, Tu1, Tu2, Td0, Td1, Td2>(Tu0 u0, Tu1 u1, Tu2
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
-        _u1.Update(this, gameTime);
-        _u2.Update(this, gameTime);
+        _u0.Update(new EntC<Entity33<Tu0, Tu1, Tu2, Td0, Td1, Td2>>(this), gameTime);
+        _u1.Update(new EntC<Entity33<Tu0, Tu1, Tu2, Td0, Td1, Td2>>(this), gameTime);
+        _u2.Update(new EntC<Entity33<Tu0, Tu1, Tu2, Td0, Td1, Td2>>(this), gameTime);
     }
     public void Draw()
     {
-        _d0.Draw(this);
-        _d1.Draw(this);
-        _d2.Draw(this);
+        _d0.Draw(new EntC<Entity33<Tu0, Tu1, Tu2, Td0, Td1, Td2>>(this));
+        _d1.Draw(new EntC<Entity33<Tu0, Tu1, Tu2, Td0, Td1, Td2>>(this));
+        _d2.Draw(new EntC<Entity33<Tu0, Tu1, Tu2, Td0, Td1, Td2>>(this));
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -830,7 +906,9 @@ internal sealed class Entity33<Tu0, Tu1, Tu2, Td0, Td1, Td2>(Tu0 u0, Tu1 u1, Tu2
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
@@ -841,6 +919,7 @@ internal sealed class Entity33<Tu0, Tu1, Tu2, Td0, Td1, Td2>(Tu0 u0, Tu1 u1, Tu2
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -852,6 +931,7 @@ internal sealed class Entity33<Tu0, Tu1, Tu2, Td0, Td1, Td2>(Tu0 u0, Tu1 u1, Tu2
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -864,7 +944,7 @@ internal sealed class Entity33<Tu0, Tu1, Tu2, Td0, Td1, Td2>(Tu0 u0, Tu1 u1, Tu2
     }
 }
 
-internal sealed class Entity40<Tu0, Tu1, Tu2, Tu3>(Tu0 u0, Tu1 u1, Tu2 u2, Tu3 u3) : IEntity<Entity40<Tu0, Tu1, Tu2, Tu3>>
+internal sealed class Entity40<Tu0, Tu1, Tu2, Tu3>(in Tu0 u0, in Tu1 u1, in Tu2 u2, in Tu3 u3) : IEntity<Entity40<Tu0, Tu1, Tu2, Tu3>>
     where Tu0 : IUpdateComponent
     where Tu1 : IUpdateComponent
     where Tu2 : IUpdateComponent
@@ -878,16 +958,17 @@ internal sealed class Entity40<Tu0, Tu1, Tu2, Tu3>(Tu0 u0, Tu1 u1, Tu2 u2, Tu3 u
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
-        _u1.Update(this, gameTime);
-        _u2.Update(this, gameTime);
-        _u3.Update(this, gameTime);
+        _u0.Update(new EntC<Entity40<Tu0, Tu1, Tu2, Tu3>>(this), gameTime);
+        _u1.Update(new EntC<Entity40<Tu0, Tu1, Tu2, Tu3>>(this), gameTime);
+        _u2.Update(new EntC<Entity40<Tu0, Tu1, Tu2, Tu3>>(this), gameTime);
+        _u3.Update(new EntC<Entity40<Tu0, Tu1, Tu2, Tu3>>(this), gameTime);
     }
     public void Draw()
     {
 
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -901,7 +982,9 @@ internal sealed class Entity40<Tu0, Tu1, Tu2, Tu3>(Tu0 u0, Tu1 u1, Tu2 u2, Tu3 u
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
@@ -914,12 +997,14 @@ internal sealed class Entity40<Tu0, Tu1, Tu2, Tu3>(Tu0 u0, Tu1 u1, Tu2 u2, Tu3 u
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
 
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
 
@@ -927,7 +1012,7 @@ internal sealed class Entity40<Tu0, Tu1, Tu2, Tu3>(Tu0 u0, Tu1 u1, Tu2 u2, Tu3 u
     }
 }
 
-internal sealed class Entity41<Tu0, Tu1, Tu2, Tu3, Td0>(Tu0 u0, Tu1 u1, Tu2 u2, Tu3 u3, Td0 d0) : IEntity<Entity41<Tu0, Tu1, Tu2, Tu3, Td0>>
+internal sealed class Entity41<Tu0, Tu1, Tu2, Tu3, Td0>(in Tu0 u0, in Tu1 u1, in Tu2 u2, in Tu3 u3, in Td0 d0) : IEntity<Entity41<Tu0, Tu1, Tu2, Tu3, Td0>>
     where Tu0 : IUpdateComponent
     where Tu1 : IUpdateComponent
     where Tu2 : IUpdateComponent
@@ -942,16 +1027,17 @@ internal sealed class Entity41<Tu0, Tu1, Tu2, Tu3, Td0>(Tu0 u0, Tu1 u1, Tu2 u2, 
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
-        _u1.Update(this, gameTime);
-        _u2.Update(this, gameTime);
-        _u3.Update(this, gameTime);
+        _u0.Update(new EntC<Entity41<Tu0, Tu1, Tu2, Tu3, Td0>>(this), gameTime);
+        _u1.Update(new EntC<Entity41<Tu0, Tu1, Tu2, Tu3, Td0>>(this), gameTime);
+        _u2.Update(new EntC<Entity41<Tu0, Tu1, Tu2, Tu3, Td0>>(this), gameTime);
+        _u3.Update(new EntC<Entity41<Tu0, Tu1, Tu2, Tu3, Td0>>(this), gameTime);
     }
     public void Draw()
     {
-        _d0.Draw(this);
+        _d0.Draw(new EntC<Entity41<Tu0, Tu1, Tu2, Tu3, Td0>>(this));
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -965,7 +1051,9 @@ internal sealed class Entity41<Tu0, Tu1, Tu2, Tu3, Td0>(Tu0 u0, Tu1 u1, Tu2 u2, 
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
@@ -978,6 +1066,7 @@ internal sealed class Entity41<Tu0, Tu1, Tu2, Tu3, Td0>(Tu0 u0, Tu1 u1, Tu2 u2, 
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -985,6 +1074,7 @@ internal sealed class Entity41<Tu0, Tu1, Tu2, Tu3, Td0>(Tu0 u0, Tu1 u1, Tu2 u2, 
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -993,7 +1083,7 @@ internal sealed class Entity41<Tu0, Tu1, Tu2, Tu3, Td0>(Tu0 u0, Tu1 u1, Tu2 u2, 
     }
 }
 
-internal sealed class Entity42<Tu0, Tu1, Tu2, Tu3, Td0, Td1>(Tu0 u0, Tu1 u1, Tu2 u2, Tu3 u3, Td0 d0, Td1 d1) : IEntity<Entity42<Tu0, Tu1, Tu2, Tu3, Td0, Td1>>
+internal sealed class Entity42<Tu0, Tu1, Tu2, Tu3, Td0, Td1>(in Tu0 u0, in Tu1 u1, in Tu2 u2, in Tu3 u3, in Td0 d0, in Td1 d1) : IEntity<Entity42<Tu0, Tu1, Tu2, Tu3, Td0, Td1>>
     where Tu0 : IUpdateComponent
     where Tu1 : IUpdateComponent
     where Tu2 : IUpdateComponent
@@ -1010,17 +1100,18 @@ internal sealed class Entity42<Tu0, Tu1, Tu2, Tu3, Td0, Td1>(Tu0 u0, Tu1 u1, Tu2
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
-        _u1.Update(this, gameTime);
-        _u2.Update(this, gameTime);
-        _u3.Update(this, gameTime);
+        _u0.Update(new EntC<Entity42<Tu0, Tu1, Tu2, Tu3, Td0, Td1>>(this), gameTime);
+        _u1.Update(new EntC<Entity42<Tu0, Tu1, Tu2, Tu3, Td0, Td1>>(this), gameTime);
+        _u2.Update(new EntC<Entity42<Tu0, Tu1, Tu2, Tu3, Td0, Td1>>(this), gameTime);
+        _u3.Update(new EntC<Entity42<Tu0, Tu1, Tu2, Tu3, Td0, Td1>>(this), gameTime);
     }
     public void Draw()
     {
-        _d0.Draw(this);
-        _d1.Draw(this);
+        _d0.Draw(new EntC<Entity42<Tu0, Tu1, Tu2, Tu3, Td0, Td1>>(this));
+        _d1.Draw(new EntC<Entity42<Tu0, Tu1, Tu2, Tu3, Td0, Td1>>(this));
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -1034,7 +1125,9 @@ internal sealed class Entity42<Tu0, Tu1, Tu2, Tu3, Td0, Td1>(Tu0 u0, Tu1 u1, Tu2
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
@@ -1047,6 +1140,7 @@ internal sealed class Entity42<Tu0, Tu1, Tu2, Tu3, Td0, Td1>(Tu0 u0, Tu1 u1, Tu2
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -1056,6 +1150,7 @@ internal sealed class Entity42<Tu0, Tu1, Tu2, Tu3, Td0, Td1>(Tu0 u0, Tu1 u1, Tu2
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -1066,7 +1161,7 @@ internal sealed class Entity42<Tu0, Tu1, Tu2, Tu3, Td0, Td1>(Tu0 u0, Tu1 u1, Tu2
     }
 }
 
-internal sealed class Entity43<Tu0, Tu1, Tu2, Tu3, Td0, Td1, Td2>(Tu0 u0, Tu1 u1, Tu2 u2, Tu3 u3, Td0 d0, Td1 d1, Td2 d2) : IEntity<Entity43<Tu0, Tu1, Tu2, Tu3, Td0, Td1, Td2>>
+internal sealed class Entity43<Tu0, Tu1, Tu2, Tu3, Td0, Td1, Td2>(in Tu0 u0, in Tu1 u1, in Tu2 u2, in Tu3 u3, in Td0 d0, in Td1 d1, in Td2 d2) : IEntity<Entity43<Tu0, Tu1, Tu2, Tu3, Td0, Td1, Td2>>
     where Tu0 : IUpdateComponent
     where Tu1 : IUpdateComponent
     where Tu2 : IUpdateComponent
@@ -1085,18 +1180,19 @@ internal sealed class Entity43<Tu0, Tu1, Tu2, Tu3, Td0, Td1, Td2>(Tu0 u0, Tu1 u1
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
-        _u1.Update(this, gameTime);
-        _u2.Update(this, gameTime);
-        _u3.Update(this, gameTime);
+        _u0.Update(new EntC<Entity43<Tu0, Tu1, Tu2, Tu3, Td0, Td1, Td2>>(this), gameTime);
+        _u1.Update(new EntC<Entity43<Tu0, Tu1, Tu2, Tu3, Td0, Td1, Td2>>(this), gameTime);
+        _u2.Update(new EntC<Entity43<Tu0, Tu1, Tu2, Tu3, Td0, Td1, Td2>>(this), gameTime);
+        _u3.Update(new EntC<Entity43<Tu0, Tu1, Tu2, Tu3, Td0, Td1, Td2>>(this), gameTime);
     }
     public void Draw()
     {
-        _d0.Draw(this);
-        _d1.Draw(this);
-        _d2.Draw(this);
+        _d0.Draw(new EntC<Entity43<Tu0, Tu1, Tu2, Tu3, Td0, Td1, Td2>>(this));
+        _d1.Draw(new EntC<Entity43<Tu0, Tu1, Tu2, Tu3, Td0, Td1, Td2>>(this));
+        _d2.Draw(new EntC<Entity43<Tu0, Tu1, Tu2, Tu3, Td0, Td1, Td2>>(this));
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -1110,7 +1206,9 @@ internal sealed class Entity43<Tu0, Tu1, Tu2, Tu3, Td0, Td1, Td2>(Tu0 u0, Tu1 u1
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
@@ -1123,6 +1221,7 @@ internal sealed class Entity43<Tu0, Tu1, Tu2, Tu3, Td0, Td1, Td2>(Tu0 u0, Tu1 u1
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -1134,6 +1233,7 @@ internal sealed class Entity43<Tu0, Tu1, Tu2, Tu3, Td0, Td1, Td2>(Tu0 u0, Tu1 u1
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -1146,7 +1246,7 @@ internal sealed class Entity43<Tu0, Tu1, Tu2, Tu3, Td0, Td1, Td2>(Tu0 u0, Tu1 u1
     }
 }
 
-internal sealed class Entity50<Tu0, Tu1, Tu2, Tu3, Tu4>(Tu0 u0, Tu1 u1, Tu2 u2, Tu3 u3, Tu4 u4) : IEntity<Entity50<Tu0, Tu1, Tu2, Tu3, Tu4>>
+internal sealed class Entity50<Tu0, Tu1, Tu2, Tu3, Tu4>(in Tu0 u0, in Tu1 u1, in Tu2 u2, in Tu3 u3, in Tu4 u4) : IEntity<Entity50<Tu0, Tu1, Tu2, Tu3, Tu4>>
     where Tu0 : IUpdateComponent
     where Tu1 : IUpdateComponent
     where Tu2 : IUpdateComponent
@@ -1162,17 +1262,18 @@ internal sealed class Entity50<Tu0, Tu1, Tu2, Tu3, Tu4>(Tu0 u0, Tu1 u1, Tu2 u2, 
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
-        _u1.Update(this, gameTime);
-        _u2.Update(this, gameTime);
-        _u3.Update(this, gameTime);
-        _u4.Update(this, gameTime);
+        _u0.Update(new EntC<Entity50<Tu0, Tu1, Tu2, Tu3, Tu4>>(this), gameTime);
+        _u1.Update(new EntC<Entity50<Tu0, Tu1, Tu2, Tu3, Tu4>>(this), gameTime);
+        _u2.Update(new EntC<Entity50<Tu0, Tu1, Tu2, Tu3, Tu4>>(this), gameTime);
+        _u3.Update(new EntC<Entity50<Tu0, Tu1, Tu2, Tu3, Tu4>>(this), gameTime);
+        _u4.Update(new EntC<Entity50<Tu0, Tu1, Tu2, Tu3, Tu4>>(this), gameTime);
     }
     public void Draw()
     {
 
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -1188,7 +1289,9 @@ internal sealed class Entity50<Tu0, Tu1, Tu2, Tu3, Tu4>(Tu0 u0, Tu1 u1, Tu2 u2, 
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
@@ -1203,12 +1306,14 @@ internal sealed class Entity50<Tu0, Tu1, Tu2, Tu3, Tu4>(Tu0 u0, Tu1 u1, Tu2 u2, 
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
 
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
 
@@ -1216,7 +1321,7 @@ internal sealed class Entity50<Tu0, Tu1, Tu2, Tu3, Tu4>(Tu0 u0, Tu1 u1, Tu2 u2, 
     }
 }
 
-internal sealed class Entity51<Tu0, Tu1, Tu2, Tu3, Tu4, Td0>(Tu0 u0, Tu1 u1, Tu2 u2, Tu3 u3, Tu4 u4, Td0 d0) : IEntity<Entity51<Tu0, Tu1, Tu2, Tu3, Tu4, Td0>>
+internal sealed class Entity51<Tu0, Tu1, Tu2, Tu3, Tu4, Td0>(in Tu0 u0, in Tu1 u1, in Tu2 u2, in Tu3 u3, in Tu4 u4, in Td0 d0) : IEntity<Entity51<Tu0, Tu1, Tu2, Tu3, Tu4, Td0>>
     where Tu0 : IUpdateComponent
     where Tu1 : IUpdateComponent
     where Tu2 : IUpdateComponent
@@ -1233,17 +1338,18 @@ internal sealed class Entity51<Tu0, Tu1, Tu2, Tu3, Tu4, Td0>(Tu0 u0, Tu1 u1, Tu2
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
-        _u1.Update(this, gameTime);
-        _u2.Update(this, gameTime);
-        _u3.Update(this, gameTime);
-        _u4.Update(this, gameTime);
+        _u0.Update(new EntC<Entity51<Tu0, Tu1, Tu2, Tu3, Tu4, Td0>>(this), gameTime);
+        _u1.Update(new EntC<Entity51<Tu0, Tu1, Tu2, Tu3, Tu4, Td0>>(this), gameTime);
+        _u2.Update(new EntC<Entity51<Tu0, Tu1, Tu2, Tu3, Tu4, Td0>>(this), gameTime);
+        _u3.Update(new EntC<Entity51<Tu0, Tu1, Tu2, Tu3, Tu4, Td0>>(this), gameTime);
+        _u4.Update(new EntC<Entity51<Tu0, Tu1, Tu2, Tu3, Tu4, Td0>>(this), gameTime);
     }
     public void Draw()
     {
-        _d0.Draw(this);
+        _d0.Draw(new EntC<Entity51<Tu0, Tu1, Tu2, Tu3, Tu4, Td0>>(this));
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -1259,7 +1365,9 @@ internal sealed class Entity51<Tu0, Tu1, Tu2, Tu3, Tu4, Td0>(Tu0 u0, Tu1 u1, Tu2
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
@@ -1274,6 +1382,7 @@ internal sealed class Entity51<Tu0, Tu1, Tu2, Tu3, Tu4, Td0>(Tu0 u0, Tu1 u1, Tu2
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -1281,6 +1390,7 @@ internal sealed class Entity51<Tu0, Tu1, Tu2, Tu3, Tu4, Td0>(Tu0 u0, Tu1 u1, Tu2
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -1289,7 +1399,7 @@ internal sealed class Entity51<Tu0, Tu1, Tu2, Tu3, Tu4, Td0>(Tu0 u0, Tu1 u1, Tu2
     }
 }
 
-internal sealed class Entity52<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1>(Tu0 u0, Tu1 u1, Tu2 u2, Tu3 u3, Tu4 u4, Td0 d0, Td1 d1) : IEntity<Entity52<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1>>
+internal sealed class Entity52<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1>(in Tu0 u0, in Tu1 u1, in Tu2 u2, in Tu3 u3, in Tu4 u4, in Td0 d0, in Td1 d1) : IEntity<Entity52<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1>>
     where Tu0 : IUpdateComponent
     where Tu1 : IUpdateComponent
     where Tu2 : IUpdateComponent
@@ -1308,18 +1418,19 @@ internal sealed class Entity52<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1>(Tu0 u0, Tu1 u1
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
-        _u1.Update(this, gameTime);
-        _u2.Update(this, gameTime);
-        _u3.Update(this, gameTime);
-        _u4.Update(this, gameTime);
+        _u0.Update(new EntC<Entity52<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1>>(this), gameTime);
+        _u1.Update(new EntC<Entity52<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1>>(this), gameTime);
+        _u2.Update(new EntC<Entity52<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1>>(this), gameTime);
+        _u3.Update(new EntC<Entity52<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1>>(this), gameTime);
+        _u4.Update(new EntC<Entity52<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1>>(this), gameTime);
     }
     public void Draw()
     {
-        _d0.Draw(this);
-        _d1.Draw(this);
+        _d0.Draw(new EntC<Entity52<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1>>(this));
+        _d1.Draw(new EntC<Entity52<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1>>(this));
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -1335,7 +1446,9 @@ internal sealed class Entity52<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1>(Tu0 u0, Tu1 u1
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
@@ -1350,6 +1463,7 @@ internal sealed class Entity52<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1>(Tu0 u0, Tu1 u1
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -1359,6 +1473,7 @@ internal sealed class Entity52<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1>(Tu0 u0, Tu1 u1
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -1369,7 +1484,7 @@ internal sealed class Entity52<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1>(Tu0 u0, Tu1 u1
     }
 }
 
-internal sealed class Entity53<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1, Td2>(Tu0 u0, Tu1 u1, Tu2 u2, Tu3 u3, Tu4 u4, Td0 d0, Td1 d1, Td2 d2) : IEntity<Entity53<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1, Td2>>
+internal sealed class Entity53<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1, Td2>(in Tu0 u0, in Tu1 u1, in Tu2 u2, in Tu3 u3, in Tu4 u4, in Td0 d0, in Td1 d1, in Td2 d2) : IEntity<Entity53<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1, Td2>>
     where Tu0 : IUpdateComponent
     where Tu1 : IUpdateComponent
     where Tu2 : IUpdateComponent
@@ -1390,19 +1505,20 @@ internal sealed class Entity53<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1, Td2>(Tu0 u0, T
 
     public void Update(GameTime gameTime)
     {
-        _u0.Update(this, gameTime);
-        _u1.Update(this, gameTime);
-        _u2.Update(this, gameTime);
-        _u3.Update(this, gameTime);
-        _u4.Update(this, gameTime);
+        _u0.Update(new EntC<Entity53<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1, Td2>>(this), gameTime);
+        _u1.Update(new EntC<Entity53<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1, Td2>>(this), gameTime);
+        _u2.Update(new EntC<Entity53<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1, Td2>>(this), gameTime);
+        _u3.Update(new EntC<Entity53<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1, Td2>>(this), gameTime);
+        _u4.Update(new EntC<Entity53<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1, Td2>>(this), gameTime);
     }
     public void Draw()
     {
-        _d0.Draw(this);
-        _d1.Draw(this);
-        _d2.Draw(this);
+        _d0.Draw(new EntC<Entity53<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1, Td2>>(this));
+        _d1.Draw(new EntC<Entity53<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1, Td2>>(this));
+        _d2.Draw(new EntC<Entity53<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1, Td2>>(this));
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetUpdate<T>() where T : IUpdateComponent
     {
         if (_u0 is T)
@@ -1418,7 +1534,9 @@ internal sealed class Entity53<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1, Td2>(Tu0 u0, T
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasUpdate<T>() where T : IUpdateComponent
+
     {
         if (_u0 is T)
             return true;
@@ -1433,6 +1551,7 @@ internal sealed class Entity53<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1, Td2>(Tu0 u0, T
         return false;
     }
 
+    [MethodImpl(AggOpt)]
     public ref T GetDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)
@@ -1444,6 +1563,7 @@ internal sealed class Entity53<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1, Td2>(Tu0 u0, T
         return ref Throw_NoComponent<T>();
     }
 
+    [MethodImpl(AggOpt)]
     public bool HasDraw<T>() where T : IDrawComponent
     {
         if (_d0 is T)

@@ -1,9 +1,6 @@
-﻿using FreeEC;
-using Microsoft.Xna.Framework;
-using System;
-using Tester;
+﻿using Tester;
 
-internal class Program
+public class Program
 {
     public static void Main()
     {

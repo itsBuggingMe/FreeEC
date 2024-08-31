@@ -12,7 +12,9 @@ namespace Tester
         private SpriteBatch _spriteBatch;
         private static Texture2D _pix;
         private World _world = new World(1);
-        const int Boxes = 1000000;
+        const int Boxes = 100_000;
+        public static Vector2 MousePosition { get; set; }
+        public static bool Click { get; set; }
 
         public GameRoot()
         {
@@ -20,6 +22,9 @@ namespace Tester
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
+
+        public static Vector2 RandomVector() => RandomVectorPos() * 2 - Vector2.One;
+        public static Vector2 RandomVectorPos() => new Vector2(Random.Shared.NextSingle(), Random.Shared.NextSingle());
 
         protected override void Initialize()
         {
@@ -33,9 +38,10 @@ namespace Tester
 
             for (int i = 0; i < Boxes; i++)
             {
+
                 _world
-                    .With(new PositionComponent(new Vector2(Random.Shared.NextSingle() * clientSize.X, Random.Shared.NextSingle() * clientSize.Y), Vector2.UnitX, 0.95f))
-                    .With(new JumpTowardsCursorBehavior())
+                    .With(new PositionComponent(RandomVectorPos() * clientSize, RandomVector(), 0.99f))
+                    .With(new RandomBehavior())
                     .With(new SpriteComponent(_spriteBatch, _pix))
                     .Finish();
             }
@@ -46,6 +52,8 @@ namespace Tester
             InputHelper.TickUpdate(IsActive);
             if (InputHelper.Down(Keys.Escape))
                 Exit();
+            MousePosition = InputHelper.MouseLocation.ToVector2();
+            Click = InputHelper.RisingEdge(MouseButton.Left);
             _world.Update(gameTime);
         }
 

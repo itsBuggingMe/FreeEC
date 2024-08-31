@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -10,16 +11,16 @@ namespace FreeEC
 {
     public class World
     {
-        private FastStack<IEntity> _entities;
-        private Dictionary<object, FastStack<IEntity>> _tagLookup = [];
+        private FastStack<IEntity> _entities = new(16);
+        private readonly Dictionary<object, FastStack<IEntity>> _tagLookup = [];
 
-        private List<IUpdateComponent> _updates = [];
-        private List<IDrawComponent> _draw = [];
-        private Dictionary<int, object[]> _cachedArrs = [];
-        private Dictionary<int, Type[]> _genericArrs = [];
+        private readonly List<IUpdateComponent> _updates = [];
+        private readonly List<IDrawComponent> _draw = [];
+        private readonly Dictionary<int, object[]> _cachedArrs = [];
+        private readonly Dictionary<int, Type[]> _genericArrs = [];
 
         public World With<T>(in T comp)
-            where T : IComponent
+            where T : struct, IComponent
         {
             if (comp is IUpdateComponent c)
                 _updates.Add(c);
@@ -80,7 +81,7 @@ namespace FreeEC
             }
             else
             {
-                FastStack<IEntity> space = new FastStack<IEntity>(2);
+                FastStack<IEntity> space = new(2);
                 space.Push(e);
                 _tagLookup[tag.Value] = space;
             }
@@ -125,11 +126,27 @@ namespace FreeEC
             }
         }
 
-        public void Remove(int index) => _entities.RemoveAtReplace(index);
+        public void Remove(int index)
+        {
+            IEntity toRemove = _entities[index];
+            if (toRemove.HasUpdate<TagComponent>() && _tagLookup.TryGetValue(toRemove.GetUpdate<TagComponent>().Value, out var stack))
+            {
+                var span = stack.AsSpan();
+                for (int i = 0; i < span.Length; i++)
+                {
+                    if (toRemove == span[i])
+                    {
+                        stack.RemoveAtReplace(i);
+                        break;
+                    }
+                }
+            }
+            _entities.RemoveAtReplace(index);
+        }
 
         private static T[] GetCachedArray<T>(Dictionary<int, T[]> dict, int len)
         {
-            if (dict.TryGetValue(len, out T[]? val))
+            if (dict.TryGetValue(len, out T[] val))
             {
                 return val;
             }
@@ -137,46 +154,45 @@ namespace FreeEC
             return dict[len] = new T[len];
         }
 
-
-        private struct FastStack<T>(int initalComponents = 4)
+        /// <summary>
+        /// O(1)
+        /// </summary>
+        public bool TryQuery(object key, [NotNullWhen(true)] out FastStack<IEntity> candidates)
         {
-            private T[] _buffer = new T[initalComponents > 0 ? initalComponents : throw new ArgumentException()];
-            private uint _nextIndex = 0;
-
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public void Push(T comp)
+            if (_tagLookup.TryGetValue(key, out candidates))
             {
-                if (_nextIndex < _buffer.Length)
+                return true;
+            }
+            candidates = default;
+            return false;
+        }
+
+        /// <summary>
+        /// basically O(1) unless you have a lot of entities with the same tag
+        /// </summary>
+        public bool TryQuery(object key, [NotNullWhen(true)] out IEntity result, Predicate<IEntity> selector = null)
+        {
+            if (TryQuery(key, out var stack))
+            {
+                if (selector is null && stack.HasElements)
                 {
-                    _buffer[_nextIndex++] = comp;
-                }//i think this avoids extra bounds check
+                    result = stack.Top;
+                    return true;
+                }
                 else
-                {
-                    Array.Resize(ref _buffer, _buffer.Length * 2);
-                    _buffer[_nextIndex++] = comp;
+                {//user has provided selector
+                    foreach (var ent in stack.AsSpan())
+                    {
+                        if (selector(ent))
+                        {
+                            result = ent;
+                            return true;
+                        }
+                    }
                 }
             }
-
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public T Pop() => _buffer[--_nextIndex];
-
-            public void RemoveAtReplace(int index)
-            {
-                _buffer[index] = _buffer[--_nextIndex];
-                _buffer[_nextIndex] = default!;
-            }
-
-            /// <summary>
-            /// DO NOT ALTER WHILE SPAN IS IN USE
-            /// </summary>
-            public readonly Span<T> AsSpan() => new(_buffer, 0, (int)_nextIndex);
-
-            public void Clear()
-            {
-                if (RuntimeHelpers.IsReferenceOrContainsReferences<T>())
-                    AsSpan().Clear();
-                _nextIndex = 0;
-            }
+            result = default;
+            return false;
         }
     }
 }
