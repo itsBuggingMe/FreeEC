@@ -18,32 +18,24 @@ internal sealed class Entity00() : IEntity<Entity00>
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
+
 
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
+    public bool Has<T>() where T : IComponent
     {
+
 
         return false;
     }
 
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
+    public IEnumerable<IComponent> EnumerateComponents()
     {
-
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
-    {
-
-        return false;
+        throw null!;
     }
 }
 
@@ -62,34 +54,27 @@ internal sealed class Entity01<Td0>(in Td0 d0) : IEntity<Entity01<Td0>>
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
 
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
-        if (_d0 is T)
+        if(_d0 is T)
             return ref Unsafe.As<Td0, T>(ref _d0);
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
-        if (_d0 is T)
+
+        if(_d0 is T)
             return true;
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+
+        yield return _d0;
     }
 }
 
@@ -111,38 +96,32 @@ internal sealed class Entity02<Td0, Td1>(in Td0 d0, in Td1 d1) : IEntity<Entity0
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
 
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
-        if (_d0 is T)
+        if(_d0 is T)
             return ref Unsafe.As<Td0, T>(ref _d0);
-        if (_d1 is T)
+        if(_d1 is T)
             return ref Unsafe.As<Td1, T>(ref _d1);
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
-        if (_d0 is T)
+
+        if(_d0 is T)
             return true;
-        if (_d1 is T)
+        if(_d1 is T)
             return true;
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+
+        yield return _d0;
+        yield return _d1;
     }
 }
 
@@ -167,42 +146,37 @@ internal sealed class Entity03<Td0, Td1, Td2>(in Td0 d0, in Td1 d1, in Td2 d2) :
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
 
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
-        if (_d0 is T)
+        if(_d0 is T)
             return ref Unsafe.As<Td0, T>(ref _d0);
-        if (_d1 is T)
+        if(_d1 is T)
             return ref Unsafe.As<Td1, T>(ref _d1);
-        if (_d2 is T)
+        if(_d2 is T)
             return ref Unsafe.As<Td2, T>(ref _d2);
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
-        if (_d0 is T)
+
+        if(_d0 is T)
             return true;
-        if (_d1 is T)
+        if(_d1 is T)
             return true;
-        if (_d2 is T)
+        if(_d2 is T)
             return true;
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+
+        yield return _d0;
+        yield return _d1;
+        yield return _d2;
     }
 }
 
@@ -222,34 +196,28 @@ internal sealed class Entity10<Tu0>(in Tu0 u0) : IEntity<Entity10<Tu0>>
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
+
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
+    public bool Has<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return true;
+
         return false;
     }
 
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
+    public IEnumerable<IComponent> EnumerateComponents()
     {
+        yield return _u0;
 
-        return ref Throw_NoComponent<T>();
-    }
 
-    [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
-    {
-
-        return false;
     }
 }
 
@@ -270,36 +238,30 @@ internal sealed class Entity11<Tu0, Td0>(in Tu0 u0, in Td0 d0) : IEntity<Entity1
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
-        if (_d0 is T)
+        if(_d0 is T)
             return ref Unsafe.As<Td0, T>(ref _d0);
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
-        if (_d0 is T)
+        if(_u0 is T)
+            return true;
+        if(_d0 is T)
             return true;
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+
+        yield return _d0;
     }
 }
 
@@ -323,40 +285,35 @@ internal sealed class Entity12<Tu0, Td0, Td1>(in Tu0 u0, in Td0 d0, in Td1 d1) :
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
-        if (_d0 is T)
+        if(_d0 is T)
             return ref Unsafe.As<Td0, T>(ref _d0);
-        if (_d1 is T)
+        if(_d1 is T)
             return ref Unsafe.As<Td1, T>(ref _d1);
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
-        if (_d0 is T)
+        if(_u0 is T)
             return true;
-        if (_d1 is T)
+        if(_d0 is T)
+            return true;
+        if(_d1 is T)
             return true;
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+
+        yield return _d0;
+        yield return _d1;
     }
 }
 
@@ -383,44 +340,40 @@ internal sealed class Entity13<Tu0, Td0, Td1, Td2>(in Tu0 u0, in Td0 d0, in Td1 
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
-        if (_d0 is T)
+        if(_d0 is T)
             return ref Unsafe.As<Td0, T>(ref _d0);
-        if (_d1 is T)
+        if(_d1 is T)
             return ref Unsafe.As<Td1, T>(ref _d1);
-        if (_d2 is T)
+        if(_d2 is T)
             return ref Unsafe.As<Td2, T>(ref _d2);
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
-        if (_d0 is T)
+        if(_u0 is T)
             return true;
-        if (_d1 is T)
+        if(_d0 is T)
             return true;
-        if (_d2 is T)
+        if(_d1 is T)
+            return true;
+        if(_d2 is T)
             return true;
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+
+        yield return _d0;
+        yield return _d1;
+        yield return _d2;
     }
 }
 
@@ -443,38 +396,33 @@ internal sealed class Entity20<Tu0, Tu1>(in Tu0 u0, in Tu1 u1) : IEntity<Entity2
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        if (_u1 is T)
+        if(_u1 is T)
             return ref Unsafe.As<Tu1, T>(ref _u1);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        if (_u1 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
 
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
+        if(_u0 is T)
+            return true;
+        if(_u1 is T)
+            return true;
 
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+        yield return _u1;
+
+
     }
 }
 
@@ -498,40 +446,35 @@ internal sealed class Entity21<Tu0, Tu1, Td0>(in Tu0 u0, in Tu1 u1, in Td0 d0) :
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        if (_u1 is T)
+        if(_u1 is T)
             return ref Unsafe.As<Tu1, T>(ref _u1);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        if (_u1 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
-        if (_d0 is T)
+        if(_d0 is T)
             return ref Unsafe.As<Td0, T>(ref _d0);
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
-        if (_d0 is T)
+        if(_u0 is T)
+            return true;
+        if(_u1 is T)
+            return true;
+        if(_d0 is T)
             return true;
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+        yield return _u1;
+
+        yield return _d0;
     }
 }
 
@@ -558,44 +501,40 @@ internal sealed class Entity22<Tu0, Tu1, Td0, Td1>(in Tu0 u0, in Tu1 u1, in Td0 
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        if (_u1 is T)
+        if(_u1 is T)
             return ref Unsafe.As<Tu1, T>(ref _u1);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        if (_u1 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
-        if (_d0 is T)
+        if(_d0 is T)
             return ref Unsafe.As<Td0, T>(ref _d0);
-        if (_d1 is T)
+        if(_d1 is T)
             return ref Unsafe.As<Td1, T>(ref _d1);
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
-        if (_d0 is T)
+        if(_u0 is T)
             return true;
-        if (_d1 is T)
+        if(_u1 is T)
+            return true;
+        if(_d0 is T)
+            return true;
+        if(_d1 is T)
             return true;
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+        yield return _u1;
+
+        yield return _d0;
+        yield return _d1;
     }
 }
 
@@ -625,48 +564,45 @@ internal sealed class Entity23<Tu0, Tu1, Td0, Td1, Td2>(in Tu0 u0, in Tu1 u1, in
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        if (_u1 is T)
+        if(_u1 is T)
             return ref Unsafe.As<Tu1, T>(ref _u1);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        if (_u1 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
-        if (_d0 is T)
+        if(_d0 is T)
             return ref Unsafe.As<Td0, T>(ref _d0);
-        if (_d1 is T)
+        if(_d1 is T)
             return ref Unsafe.As<Td1, T>(ref _d1);
-        if (_d2 is T)
+        if(_d2 is T)
             return ref Unsafe.As<Td2, T>(ref _d2);
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
-        if (_d0 is T)
+        if(_u0 is T)
             return true;
-        if (_d1 is T)
+        if(_u1 is T)
             return true;
-        if (_d2 is T)
+        if(_d0 is T)
+            return true;
+        if(_d1 is T)
+            return true;
+        if(_d2 is T)
             return true;
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+        yield return _u1;
+
+        yield return _d0;
+        yield return _d1;
+        yield return _d2;
     }
 }
 
@@ -692,42 +628,38 @@ internal sealed class Entity30<Tu0, Tu1, Tu2>(in Tu0 u0, in Tu1 u1, in Tu2 u2) :
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        if (_u1 is T)
+        if(_u1 is T)
             return ref Unsafe.As<Tu1, T>(ref _u1);
-        if (_u2 is T)
+        if(_u2 is T)
             return ref Unsafe.As<Tu2, T>(ref _u2);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        if (_u1 is T)
-            return true;
-        if (_u2 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
 
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
+        if(_u0 is T)
+            return true;
+        if(_u1 is T)
+            return true;
+        if(_u2 is T)
+            return true;
 
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+        yield return _u1;
+        yield return _u2;
+
+
     }
 }
 
@@ -754,44 +686,40 @@ internal sealed class Entity31<Tu0, Tu1, Tu2, Td0>(in Tu0 u0, in Tu1 u1, in Tu2 
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        if (_u1 is T)
+        if(_u1 is T)
             return ref Unsafe.As<Tu1, T>(ref _u1);
-        if (_u2 is T)
+        if(_u2 is T)
             return ref Unsafe.As<Tu2, T>(ref _u2);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        if (_u1 is T)
-            return true;
-        if (_u2 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
-        if (_d0 is T)
+        if(_d0 is T)
             return ref Unsafe.As<Td0, T>(ref _d0);
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
-        if (_d0 is T)
+        if(_u0 is T)
+            return true;
+        if(_u1 is T)
+            return true;
+        if(_u2 is T)
+            return true;
+        if(_d0 is T)
             return true;
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+        yield return _u1;
+        yield return _u2;
+
+        yield return _d0;
     }
 }
 
@@ -821,48 +749,45 @@ internal sealed class Entity32<Tu0, Tu1, Tu2, Td0, Td1>(in Tu0 u0, in Tu1 u1, in
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        if (_u1 is T)
+        if(_u1 is T)
             return ref Unsafe.As<Tu1, T>(ref _u1);
-        if (_u2 is T)
+        if(_u2 is T)
             return ref Unsafe.As<Tu2, T>(ref _u2);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        if (_u1 is T)
-            return true;
-        if (_u2 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
-        if (_d0 is T)
+        if(_d0 is T)
             return ref Unsafe.As<Td0, T>(ref _d0);
-        if (_d1 is T)
+        if(_d1 is T)
             return ref Unsafe.As<Td1, T>(ref _d1);
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
-        if (_d0 is T)
+        if(_u0 is T)
             return true;
-        if (_d1 is T)
+        if(_u1 is T)
+            return true;
+        if(_u2 is T)
+            return true;
+        if(_d0 is T)
+            return true;
+        if(_d1 is T)
             return true;
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+        yield return _u1;
+        yield return _u2;
+
+        yield return _d0;
+        yield return _d1;
     }
 }
 
@@ -895,52 +820,50 @@ internal sealed class Entity33<Tu0, Tu1, Tu2, Td0, Td1, Td2>(in Tu0 u0, in Tu1 u
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        if (_u1 is T)
+        if(_u1 is T)
             return ref Unsafe.As<Tu1, T>(ref _u1);
-        if (_u2 is T)
+        if(_u2 is T)
             return ref Unsafe.As<Tu2, T>(ref _u2);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        if (_u1 is T)
-            return true;
-        if (_u2 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
-        if (_d0 is T)
+        if(_d0 is T)
             return ref Unsafe.As<Td0, T>(ref _d0);
-        if (_d1 is T)
+        if(_d1 is T)
             return ref Unsafe.As<Td1, T>(ref _d1);
-        if (_d2 is T)
+        if(_d2 is T)
             return ref Unsafe.As<Td2, T>(ref _d2);
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
-        if (_d0 is T)
+        if(_u0 is T)
             return true;
-        if (_d1 is T)
+        if(_u1 is T)
             return true;
-        if (_d2 is T)
+        if(_u2 is T)
+            return true;
+        if(_d0 is T)
+            return true;
+        if(_d1 is T)
+            return true;
+        if(_d2 is T)
             return true;
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+        yield return _u1;
+        yield return _u2;
+
+        yield return _d0;
+        yield return _d1;
+        yield return _d2;
     }
 }
 
@@ -969,46 +892,43 @@ internal sealed class Entity40<Tu0, Tu1, Tu2, Tu3>(in Tu0 u0, in Tu1 u1, in Tu2 
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        if (_u1 is T)
+        if(_u1 is T)
             return ref Unsafe.As<Tu1, T>(ref _u1);
-        if (_u2 is T)
+        if(_u2 is T)
             return ref Unsafe.As<Tu2, T>(ref _u2);
-        if (_u3 is T)
+        if(_u3 is T)
             return ref Unsafe.As<Tu3, T>(ref _u3);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        if (_u1 is T)
-            return true;
-        if (_u2 is T)
-            return true;
-        if (_u3 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
 
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
+        if(_u0 is T)
+            return true;
+        if(_u1 is T)
+            return true;
+        if(_u2 is T)
+            return true;
+        if(_u3 is T)
+            return true;
 
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+        yield return _u1;
+        yield return _u2;
+        yield return _u3;
+
+
     }
 }
 
@@ -1038,48 +958,45 @@ internal sealed class Entity41<Tu0, Tu1, Tu2, Tu3, Td0>(in Tu0 u0, in Tu1 u1, in
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        if (_u1 is T)
+        if(_u1 is T)
             return ref Unsafe.As<Tu1, T>(ref _u1);
-        if (_u2 is T)
+        if(_u2 is T)
             return ref Unsafe.As<Tu2, T>(ref _u2);
-        if (_u3 is T)
+        if(_u3 is T)
             return ref Unsafe.As<Tu3, T>(ref _u3);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        if (_u1 is T)
-            return true;
-        if (_u2 is T)
-            return true;
-        if (_u3 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
-        if (_d0 is T)
+        if(_d0 is T)
             return ref Unsafe.As<Td0, T>(ref _d0);
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
-        if (_d0 is T)
+        if(_u0 is T)
+            return true;
+        if(_u1 is T)
+            return true;
+        if(_u2 is T)
+            return true;
+        if(_u3 is T)
+            return true;
+        if(_d0 is T)
             return true;
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+        yield return _u1;
+        yield return _u2;
+        yield return _u3;
+
+        yield return _d0;
     }
 }
 
@@ -1112,52 +1029,50 @@ internal sealed class Entity42<Tu0, Tu1, Tu2, Tu3, Td0, Td1>(in Tu0 u0, in Tu1 u
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        if (_u1 is T)
+        if(_u1 is T)
             return ref Unsafe.As<Tu1, T>(ref _u1);
-        if (_u2 is T)
+        if(_u2 is T)
             return ref Unsafe.As<Tu2, T>(ref _u2);
-        if (_u3 is T)
+        if(_u3 is T)
             return ref Unsafe.As<Tu3, T>(ref _u3);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        if (_u1 is T)
-            return true;
-        if (_u2 is T)
-            return true;
-        if (_u3 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
-        if (_d0 is T)
+        if(_d0 is T)
             return ref Unsafe.As<Td0, T>(ref _d0);
-        if (_d1 is T)
+        if(_d1 is T)
             return ref Unsafe.As<Td1, T>(ref _d1);
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
-        if (_d0 is T)
+        if(_u0 is T)
             return true;
-        if (_d1 is T)
+        if(_u1 is T)
+            return true;
+        if(_u2 is T)
+            return true;
+        if(_u3 is T)
+            return true;
+        if(_d0 is T)
+            return true;
+        if(_d1 is T)
             return true;
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+        yield return _u1;
+        yield return _u2;
+        yield return _u3;
+
+        yield return _d0;
+        yield return _d1;
     }
 }
 
@@ -1193,56 +1108,55 @@ internal sealed class Entity43<Tu0, Tu1, Tu2, Tu3, Td0, Td1, Td2>(in Tu0 u0, in 
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        if (_u1 is T)
+        if(_u1 is T)
             return ref Unsafe.As<Tu1, T>(ref _u1);
-        if (_u2 is T)
+        if(_u2 is T)
             return ref Unsafe.As<Tu2, T>(ref _u2);
-        if (_u3 is T)
+        if(_u3 is T)
             return ref Unsafe.As<Tu3, T>(ref _u3);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        if (_u1 is T)
-            return true;
-        if (_u2 is T)
-            return true;
-        if (_u3 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
-        if (_d0 is T)
+        if(_d0 is T)
             return ref Unsafe.As<Td0, T>(ref _d0);
-        if (_d1 is T)
+        if(_d1 is T)
             return ref Unsafe.As<Td1, T>(ref _d1);
-        if (_d2 is T)
+        if(_d2 is T)
             return ref Unsafe.As<Td2, T>(ref _d2);
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
-        if (_d0 is T)
+        if(_u0 is T)
             return true;
-        if (_d1 is T)
+        if(_u1 is T)
             return true;
-        if (_d2 is T)
+        if(_u2 is T)
+            return true;
+        if(_u3 is T)
+            return true;
+        if(_d0 is T)
+            return true;
+        if(_d1 is T)
+            return true;
+        if(_d2 is T)
             return true;
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+        yield return _u1;
+        yield return _u2;
+        yield return _u3;
+
+        yield return _d0;
+        yield return _d1;
+        yield return _d2;
     }
 }
 
@@ -1274,50 +1188,48 @@ internal sealed class Entity50<Tu0, Tu1, Tu2, Tu3, Tu4>(in Tu0 u0, in Tu1 u1, in
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        if (_u1 is T)
+        if(_u1 is T)
             return ref Unsafe.As<Tu1, T>(ref _u1);
-        if (_u2 is T)
+        if(_u2 is T)
             return ref Unsafe.As<Tu2, T>(ref _u2);
-        if (_u3 is T)
+        if(_u3 is T)
             return ref Unsafe.As<Tu3, T>(ref _u3);
-        if (_u4 is T)
+        if(_u4 is T)
             return ref Unsafe.As<Tu4, T>(ref _u4);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        if (_u1 is T)
-            return true;
-        if (_u2 is T)
-            return true;
-        if (_u3 is T)
-            return true;
-        if (_u4 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
 
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
+        if(_u0 is T)
+            return true;
+        if(_u1 is T)
+            return true;
+        if(_u2 is T)
+            return true;
+        if(_u3 is T)
+            return true;
+        if(_u4 is T)
+            return true;
 
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+        yield return _u1;
+        yield return _u2;
+        yield return _u3;
+        yield return _u4;
+
+
     }
 }
 
@@ -1350,52 +1262,50 @@ internal sealed class Entity51<Tu0, Tu1, Tu2, Tu3, Tu4, Td0>(in Tu0 u0, in Tu1 u
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        if (_u1 is T)
+        if(_u1 is T)
             return ref Unsafe.As<Tu1, T>(ref _u1);
-        if (_u2 is T)
+        if(_u2 is T)
             return ref Unsafe.As<Tu2, T>(ref _u2);
-        if (_u3 is T)
+        if(_u3 is T)
             return ref Unsafe.As<Tu3, T>(ref _u3);
-        if (_u4 is T)
+        if(_u4 is T)
             return ref Unsafe.As<Tu4, T>(ref _u4);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        if (_u1 is T)
-            return true;
-        if (_u2 is T)
-            return true;
-        if (_u3 is T)
-            return true;
-        if (_u4 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
-        if (_d0 is T)
+        if(_d0 is T)
             return ref Unsafe.As<Td0, T>(ref _d0);
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
-        if (_d0 is T)
+        if(_u0 is T)
+            return true;
+        if(_u1 is T)
+            return true;
+        if(_u2 is T)
+            return true;
+        if(_u3 is T)
+            return true;
+        if(_u4 is T)
+            return true;
+        if(_d0 is T)
             return true;
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+        yield return _u1;
+        yield return _u2;
+        yield return _u3;
+        yield return _u4;
+
+        yield return _d0;
     }
 }
 
@@ -1431,56 +1341,55 @@ internal sealed class Entity52<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1>(in Tu0 u0, in 
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        if (_u1 is T)
+        if(_u1 is T)
             return ref Unsafe.As<Tu1, T>(ref _u1);
-        if (_u2 is T)
+        if(_u2 is T)
             return ref Unsafe.As<Tu2, T>(ref _u2);
-        if (_u3 is T)
+        if(_u3 is T)
             return ref Unsafe.As<Tu3, T>(ref _u3);
-        if (_u4 is T)
+        if(_u4 is T)
             return ref Unsafe.As<Tu4, T>(ref _u4);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        if (_u1 is T)
-            return true;
-        if (_u2 is T)
-            return true;
-        if (_u3 is T)
-            return true;
-        if (_u4 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
-        if (_d0 is T)
+        if(_d0 is T)
             return ref Unsafe.As<Td0, T>(ref _d0);
-        if (_d1 is T)
+        if(_d1 is T)
             return ref Unsafe.As<Td1, T>(ref _d1);
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
-        if (_d0 is T)
+        if(_u0 is T)
             return true;
-        if (_d1 is T)
+        if(_u1 is T)
+            return true;
+        if(_u2 is T)
+            return true;
+        if(_u3 is T)
+            return true;
+        if(_u4 is T)
+            return true;
+        if(_d0 is T)
+            return true;
+        if(_d1 is T)
             return true;
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+        yield return _u1;
+        yield return _u2;
+        yield return _u3;
+        yield return _u4;
+
+        yield return _d0;
+        yield return _d1;
     }
 }
 
@@ -1519,59 +1428,59 @@ internal sealed class Entity53<Tu0, Tu1, Tu2, Tu3, Tu4, Td0, Td1, Td2>(in Tu0 u0
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
-        if (_u0 is T)
+        if(_u0 is T)
             return ref Unsafe.As<Tu0, T>(ref _u0);
-        if (_u1 is T)
+        if(_u1 is T)
             return ref Unsafe.As<Tu1, T>(ref _u1);
-        if (_u2 is T)
+        if(_u2 is T)
             return ref Unsafe.As<Tu2, T>(ref _u2);
-        if (_u3 is T)
+        if(_u3 is T)
             return ref Unsafe.As<Tu3, T>(ref _u3);
-        if (_u4 is T)
+        if(_u4 is T)
             return ref Unsafe.As<Tu4, T>(ref _u4);
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-        if (_u0 is T)
-            return true;
-        if (_u1 is T)
-            return true;
-        if (_u2 is T)
-            return true;
-        if (_u3 is T)
-            return true;
-        if (_u4 is T)
-            return true;
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
-        if (_d0 is T)
+        if(_d0 is T)
             return ref Unsafe.As<Td0, T>(ref _d0);
-        if (_d1 is T)
+        if(_d1 is T)
             return ref Unsafe.As<Td1, T>(ref _d1);
-        if (_d2 is T)
+        if(_d2 is T)
             return ref Unsafe.As<Td2, T>(ref _d2);
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
-        if (_d0 is T)
+        if(_u0 is T)
             return true;
-        if (_d1 is T)
+        if(_u1 is T)
             return true;
-        if (_d2 is T)
+        if(_u2 is T)
+            return true;
+        if(_u3 is T)
+            return true;
+        if(_u4 is T)
+            return true;
+        if(_d0 is T)
+            return true;
+        if(_d1 is T)
+            return true;
+        if(_d2 is T)
             return true;
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+        yield return _u0;
+        yield return _u1;
+        yield return _u2;
+        yield return _u3;
+        yield return _u4;
+
+        yield return _d0;
+        yield return _d1;
+        yield return _d2;
     }
 }

@@ -20,32 +20,25 @@ internal sealed class {type_def}({u_name}{d_name}) : IEntity<{type_def}>{u_con}{
     }
 
     [MethodImpl(AggOpt)]
-    public ref T GetUpdate<T>() where T : IUpdateComponent
+    public ref T Get<T>() where T : IComponent
     {
 {u_get}
-        return ref Throw_NoComponent<T>();
-    }
-
-    [MethodImpl(AggOpt)]
-    public bool HasUpdate<T>() where T : IUpdateComponent
-
-    {
-{u_has}
-        return false;
-    }
-
-    [MethodImpl(AggOpt)]
-    public ref T GetDraw<T>() where T : IDrawComponent
-    {
 {d_get}
         return ref Throw_NoComponent<T>();
     }
 
     [MethodImpl(AggOpt)]
-    public bool HasDraw<T>() where T : IDrawComponent
+    public bool Has<T>() where T : IComponent
     {
+{u_has}
 {d_has}
         return false;
+    }
+
+    public IEnumerable<IComponent> EnumerateComponents()
+    {
+{u_numerate}
+{d_numerate}
     }
 }
 
@@ -123,6 +116,8 @@ string Replace(int ucount, int dcount)
         .Replace("{d_get}", BuildPattern(dcount, i => $"        if(_d{i} is T)\n            return ref Unsafe.As<Td{i}, T>(ref _d{i});\n", 1))
         .Replace("{u_has}", BuildPattern(ucount, i => $"        if(_u{i} is T)\n            return true;\n", 1))
         .Replace("{d_has}", BuildPattern(dcount, i => $"        if(_d{i} is T)\n            return true;\n", 1))
+        .Replace("{u_numerate}", BuildPattern(ucount, i => $"        yield return _u{i};\n"))
+        .Replace("{d_numerate}", BuildPattern(dcount, i => $"        yield return _d{i};\n", 1))
         ;
 }
 
